@@ -7,7 +7,7 @@ export default class Banner extends Component {
         // let movie = "";
         return (
           <>
-            {movie == "" ? (
+            {movie == "" ? (              //while data is not fetched 
               <div className="spinner-border text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>

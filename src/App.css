@@ -38,7 +38,6 @@
 }
 
 
-
 .banner-card{
   background-color: white;
   width:100vw;
@@ -54,7 +53,7 @@
   color:white;
   top:50vh;
   left:5vw;
-  /* font-size:2rem; */
+ 
 }
 .banner-text{
   position:absolute;
@@ -73,6 +72,7 @@
 }
 .movie-card{
 width:20vw;
+
 margin:1rem;
 color:white;
 position: relative;
@@ -92,14 +92,14 @@ position: relative;
 .button-wrapper{
   display: flex;
   justify-content: center;
+  position: relative;
+  bottom: 5rem;
 }
 
-
-
-
-
-
-
+.text-center{
+  margin-top: 1rem;
+  color: palevioletred;
+}
 @media screen and (max-width:400px) {
   .banner-card{
     height:25vh;
@@ -118,4 +118,17 @@ position: relative;
     top:15vh;
     left:5vw;
   }
+ 
+
+  .movie-card{
+    width: 40vw;
+    margin: 0.1rem;
+  }
+  .movie-button{
+    width: 80%;
+  }
+  .movie-img{
+    width: 40vw;
+  }
 }
+
