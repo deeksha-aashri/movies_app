@@ -69,10 +69,11 @@
   flex-wrap: wrap;
   padding: 1rem;
   justify-content: center;
+  
 }
 .movie-card{
 width:20vw;
-
+height: 20rem;
 margin:1rem;
 color:white;
 position: relative;
@@ -115,8 +116,9 @@ position: relative;
   }
 
   .banner-text{
-    top:15vh;
-    left:5vw;
+    /* top:15vh;
+    left:5vw; */
+    display: none;
   }
  
 
