@@ -99,8 +99,12 @@ position: relative;
 
 .text-center{
   margin-top: 1rem;
-  color: palevioletred;
+  color: hsl(0, 43%, 8%);
 }
+.favorites{
+  margin: 2rem;
+}
+
 @media screen and (max-width:400px) {
   .banner-card{
     height:25vh;

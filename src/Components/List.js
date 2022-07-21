@@ -9,7 +9,8 @@ export default class List extends Component {
       hover:"",
       page_arr:[1],
       currPage:1,
-      movies:[]
+      movies:[],
+      favMov:[]
     };
   }
 
@@ -19,12 +20,66 @@ export default class List extends Component {
      })
   };
 
-  handleMouseLeaving(){
+  handleMouseLeaving=()=>{
     this.setState({
       hover:""
     })
   };
   
+changeMovies= async ()=>{
+  let db_result=await axios.get(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`
+  )
+  this.setState({
+    movies:[...db_result.data.results]
+  })
+}
+
+handleNext=()=>{
+  let temp=[];
+  for(let i=0;i<this.state.page_arr.length ;i++){
+     temp.push(i+1);//[1,2]
+  }
+  this.setState({
+    page_arr:[...temp],
+    currPage:this.state.currPage + 1,
+  },this.changeMovies)
+}
+
+
+handlePrevious=()=>{
+  if(this.state.currPage!=1){
+  this.setState({
+    currPage:this.state.currPage-1
+  },this.changeMovies)
+}
+}
+ 
+handlePageNum=(pageNum)=>{
+  this.setState({
+    currPage : pageNum
+  },this.changeMovies)
+}
+
+
+handleFavourites = (movieObj) => { //jurassic park
+  let localStorageMovies = JSON.parse(localStorage.getItem("movies")) || [];
+
+  if (this.state.favMov.includes(movieObj.id)) {
+    localStorageMovies = localStorageMovies.filter(
+      (movie) => movie.id != movieObj.id
+    );
+  }
+  else localStorageMovies.push(movieObj);
+   console.log(localStorageMovies);
+
+   //Now we finally update our local storage after all the deletion and addition
+  localStorage.setItem("movies", JSON.stringify(localStorageMovies));
+  let tempData = localStorageMovies.map(movieObj => movieObj.id);
+  this.setState({
+    favMov: [...tempData]
+  });
+}
  async componentDidMount(){
   // console.log("checking");
   // console.log(API_KEY);
@@ -67,8 +122,8 @@ render(){
      <h5 className="movie-title card-title">{movieObj.original_title}</h5>
      <div className="button-wrapper">
         {this.state.hover==movieObj.id &&  ( 
-        <a href="#"  className="btn btn-info" >
-          Add to favorite
+        <a  className="btn btn-danger"  onClick={()=>this.handleFavourites(movieObj)}>
+         {this.state.favMov.includes(movieObj.id)?"Remove from watchlist":"Add to watchlist"}
           </a>)}
      
        </div>
@@ -78,24 +133,20 @@ render(){
     <div className="pagination">
    <nav aria-label="Page navigation example">
   <ul className="pagination justify-content-center">
-    <li className="page-item disabled">
-      <a className="page-link">Previous</a>
+    <li className="page-item ">
+      <a className="page-link" onClick={this.handlePrevious}>Previous</a>
     </li>
-    <li className="page-item"><a className="page-link" href="#">1</a></li>
-    {/* <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li> */}
-
-{
-                      this.state.page_arr.map(pageNum => (
+                  {
+                      this.state.page_arr.map((pageNum) => (
                         <li class="page-item">
-                          <a class="page-link" href="#">
+                          <a class="page-link" onClick={()=>{this.handlePageNum(pageNum)}}>
                             {pageNum}
                           </a>
                         </li>
                       ))
                     }
     <li className="page-item">
-      <a className="page-link" href="#">Next</a>
+      <a className="page-link"  onClick={this.handleNext}>Next</a>
     </li>
   </ul>
 </nav>
