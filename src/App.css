@@ -96,7 +96,10 @@ position: relative;
   position: relative;
   bottom: 5rem;
 }
-
+.pagination{
+  display: flex;
+  justify-content: center;
+}
 .text-center{
   margin-top: 1rem;
   color: hsl(0, 43%, 8%);
@@ -137,4 +140,5 @@ position: relative;
     width: 40vw;
   }
 }
+
 

@@ -12,13 +12,18 @@ function App() {
    <BrowserRouter>
     <Navbar/>
     <Routes>
-      <Route path='/' element={<List/>}></Route>
-      <Route path='/fav' element={<Favorites/>}></Route>
-   
+      <Route path='/' 
+      element={
+      <>
+       <Banner/>
+       <List/>
+       </>
+       }
+       />
+      
+      
+      <Route path='/fav' element={<Favorites/>}/>
       </Routes>
-    
-    // <Banner/>
-   
    
     </BrowserRouter>
   );
