@@ -50,7 +50,7 @@ handleNext=()=>{
 handlePrevious=()=>{
   if(this.state.currPage!=1){
   this.setState({
-    currPage:this.state.currPage-1
+    currPage:this.state.currPage - 1,
   },this.changeMovies)
 }
 }
@@ -87,7 +87,7 @@ handleFavourites = (movieObj) => { //jurassic park
   );
   
   this.setState({
-    movies:[...db_result.data.results]//.data to convert it into readable form and .result because result brings an object and we just need the key called results of it
+    movies:[...db_result.data.results]//.data to convert it into readable form and .results because result brings an object and we just need the key called results of it
   })
  }
 
@@ -120,7 +120,7 @@ render(){
      <div className="button-wrapper">
         {this.state.hover==movieObj.id &&  ( 
         <a  className="btn btn-danger"  onClick={()=>this.handleFavourites(movieObj)}>
-         {this.state.favMov.includes(movieObj.id)?"Remove from watchlist":"Add to watchlist"}
+         {this.state.favMov.includes(movieObj.id)? "Remove from watchlist":"Add to watchlist" }
           </a>)}
      
        </div>
@@ -154,9 +154,9 @@ render(){
                   </li>
                 </ul>
               </nav>
-</div>
-  </div>
-)}
+            </div>
+           </div>
+  )}
    
   </>
  );
