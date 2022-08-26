@@ -4,5 +4,5 @@ The Watchlist page allows user to filter movies based on<br>
 1. Genre<br>
 2. Popularity<br>
 3. Rating <br>
- Check out the app at <br>
+ Check out the app at (deployed using Netlify) <br>
  https://super-cool-site-by-deeksha-aashri.netlify.app/
